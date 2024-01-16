@@ -42,6 +42,5 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            nuget SetApiKey ${GITHUB_TOKEN}
-            dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL
-            dotnet nuget push $OUTPUT/*.snupkg --source $NUGET_URL
+            dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
+            dotnet nuget push $OUTPUT/*.snupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
