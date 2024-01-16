@@ -37,8 +37,11 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release -p:Version=$VERSION Mtd.Core.sln  
       - name: Create the package
-        run: dotnet pack Mtd.Core.sln -p:Version=$VERSION -p:PackageVersion=$VERSION -p:PackageId="$PACKAGE_ID" -p:Copyright="$COPYRIGHT" -p:PackageRequireLicenseAcceptance=false -p:PackageLicenseExpression="$LICENSE" -p:PackageIcon="$ICON" -p:PackageReadmeFile="$README" -p:RepositoryUrl="$REPO" -p:RepositoryType=git -p:Description="$DESCRIPTION" --include-source --no-build --no-restore --configuration Release --output $OUTPUT  
+        run: dotnet pack Mtd.Core.sln -p:Version=$VERSION -p:PackageVersion=$VERSION -p:PackageId="$PACKAGE_ID" -p:Copyright="$COPYRIGHT" -p:PackageRequireLicenseAcceptance=false -p:PackageLicenseExpression="$LICENSE" -p:PackageIcon="$ICON" -p:PackageReadmeFile="$README" -p:RepositoryUrl="$REPO" -p:RepositoryType=git -p:Description="$DESCRIPTION" -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --no-build --no-restore --configuration Release --output $OUTPUT
       - name: Publish the package to GPR
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
+        run: |
+            nuget SetApiKey ${GITHUB_TOKEN}
+            dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL
+            dotnet nuget push $OUTPUT/*.snupkg --source $NUGET_URL
