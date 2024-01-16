@@ -13,7 +13,6 @@ env:
     REPO: "git@github.com:CUMTD/Mtd.Core.git"
     DESCRIPTION: "Core code shared by most MTD projects."
     OUTPUT: "nupkgs"
-    VERSION: ${{ github.ref#v }}
 
 jobs:
   deploy:
@@ -23,12 +22,27 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+  
+      - name: Set Versions
+        uses: actions/github-script@v4
+        id: set_version
+        with:
+          script: |
+            const tag = context.ref.substring(10)
+            const no_v = tag.replace('v', '')
+            const dash_index = no_v.lastIndexOf('-')
+            const no_dash = (dash_index > -1) ?  no_v.substring(0, dash_index) : no_v
+            core.setOutput('tag', tag)
+            core.setOutput('no-v', no_v)
+            core.setOutput('no-dash', no_dash)
+
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x' # SDK Version to use.
           source-url: https://nuget.pkg.github.com/cumtd/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          VERSION: ${{ steps.set_version.outputs.no-dash }}
       - name: Restore dependencies
         run: dotnet restore Mtd.Core.sln
       - run: dotnet build --no-restore --configuration Release Mtd.Core.sln
