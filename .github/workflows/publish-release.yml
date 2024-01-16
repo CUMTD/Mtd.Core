@@ -14,7 +14,6 @@ env:
     DESCRIPTION: "Core code shared by most MTD projects."
     OUTPUT: "nupkgs"
     TAG_NAME: ${{ github.event.release.tag_name }}
-    VERSION: ${TAG_NAME:1}"
 
 jobs:
   deploy:
@@ -34,19 +33,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Mtd.Core.sln
       - run: dotnet build --no-restore --configuration Release Mtd.Core.sln
-      - name: env
-        run: |
-            echo Tag Name = $TAG_NAME
-            echo Version = $VERSION
-            echo $PACKAGE_ID
-            echo $COPYRIGHT
-            echo $LICENSE
-            echo $ICON
-            echo $README
-            echo $REPO
-            echo $DESCRIPTION
-            echo $OUTPUT
       - name: Create the package
-        run: dotnet pack Mtd.Core.sln -p:PackageVersion="$VERSION" -p:PackageId="$PACKAGE_ID" -p:Copyright="$COPYRIGHT" -p:PackageRequireLicenseAcceptance=false -p:PackageLicenseExpression="$LICENSE" -p:PackageIcon="$ICON" -p:PackageReadmeFile="$README" -p:RepositoryUrl="$REPO" -p:RepositoryType=git -p:Description="$DESCRIPTION" --include-source --no-build --no-restore --configuration Release --output $OUTPUT
+        run: dotnet pack Mtd.Core.sln -p:PackageVersion="TAG_NAME" -p:PackageId="$PACKAGE_ID" -p:Copyright="$COPYRIGHT" -p:PackageRequireLicenseAcceptance=false -p:PackageLicenseExpression="$LICENSE" -p:PackageIcon="$ICON" -p:PackageReadmeFile="$README" -p:RepositoryUrl="$REPO" -p:RepositoryType=git -p:Description="$DESCRIPTION" --include-source --no-build --no-restore --configuration Release --output $OUTPUT
       - name: Publish the package to GPR
         run: dotnet nuget push $OUTPUT/*.nupkg
