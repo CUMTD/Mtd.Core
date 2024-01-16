@@ -13,7 +13,7 @@ env:
     REPO: "git@github.com:CUMTD/Mtd.Core.git"
     DESCRIPTION: "Core code shared by most MTD projects."
     OUTPUT: "nupkgs"
-    VERSION: ${{ github.ref }}
+    VERSION: ${{ github.ref#v }}
 
 jobs:
   deploy:
