@@ -41,6 +41,10 @@ jobs:
       - name: Publish the package to GPR
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-            dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
-            dotnet nuget push $OUTPUT/*.snupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
+
+        run: dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
+
+        # Once GitHub supports snupkg, replace the above with:
+        #run: |
+            #dotnet nuget push $OUTPUT/*.nupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
+            # dotnet nuget push $OUTPUT/*.snupkg --source $NUGET_URL --api-key ${GITHUB_TOKEN}
