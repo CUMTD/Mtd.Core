@@ -3,7 +3,7 @@ namespace Mtd.Core.Entities
 	public abstract class GuidEntity : Entity, IIdentity<string>
 	{
 		private const string GUID_FORMAT = "N";
-		public string Id { get; set; }
+		public required string Id { get; set; }
 
 		protected GuidEntity()
 		{
