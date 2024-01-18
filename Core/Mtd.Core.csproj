@@ -4,6 +4,7 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\icon.png" Pack="true" PackagePath="\"/>
