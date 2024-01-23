@@ -81,7 +81,7 @@ namespace Mtd.Core.Repositories
 		/// <returns>
 		/// The first element in the sequence that passes the test in the specified predicate function.
 		/// </returns>
-		T FirstOrDefault(Expression<Func<T, bool>> predicate);
+		T? FirstOrDefault(Expression<Func<T, bool>> predicate);
 
 		/// <summary>
 		/// Asynchronously returns the first element in a sequence that satisfies a specified condition.
@@ -106,7 +106,7 @@ namespace Mtd.Core.Repositories
 		/// <returns>
 		/// The first element in the sequence that passes the test in the specified predicate function.
 		/// </returns>
-		Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
+		Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate);
 
 		/// <summary>
 		/// Returns all items in the repository.
@@ -116,7 +116,7 @@ namespace Mtd.Core.Repositories
 		/// </returns>
 		IEnumerable<T> GetAll();
 
-		Task<List<T>> GetAllAsync();
+		Task<ICollection<T>> GetAllAsync();
 
 		/// <summary>
 		/// Returns the only element of a sequence that satisfies a specified condition, and throws
@@ -154,7 +154,7 @@ namespace Mtd.Core.Repositories
 		/// The single element of the repository that satisfies the condition, or default(T) if no
 		/// such element is found.
 		/// </returns>
-		T SingleOrDefault(Expression<Func<T, bool>> predicate);
+		T? SingleOrDefault(Expression<Func<T, bool>> predicate);
 
 		/// <summary>
 		/// Asynchronously returns the only element of the repository that satisfies a specified condition or a
@@ -168,7 +168,7 @@ namespace Mtd.Core.Repositories
 		/// The single element of the repository that satisfies the condition, or default(T) if no
 		/// such element is found.
 		/// </returns>
-		Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
+		Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
 
 		/// <summary>
 		/// Filters the repository based on a predicate.
@@ -190,6 +190,6 @@ namespace Mtd.Core.Repositories
 		/// <returns>
 		/// An IEnumerable&lt;T&gt; that contains all elements from the repository that satisfy the condition.
 		/// </returns>
-		Task<List<T>> WhereAsync(Expression<Func<T, bool>> predicate);
+		Task<ICollection<T>> WhereAsync(Expression<Func<T, bool>> predicate);
 	}
 }
