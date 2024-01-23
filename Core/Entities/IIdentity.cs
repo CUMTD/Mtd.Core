@@ -6,7 +6,8 @@
 	/// <typeparam name="T">
 	/// The type of the identity.
 	/// </typeparam>
-	public interface IIdentity<T> where T : IComparable<T>
+	public interface IIdentity<T> : IEntity
+		where T : notnull, IComparable<T>
 	{
 		/// <summary>
 		/// The identity.
