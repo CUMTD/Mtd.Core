@@ -12,7 +12,7 @@ namespace Mtd.Core.Repositories
 	/// The type of the entity.
 	/// </typeparam>
 	public interface IIdentifiable<in TIdentity, TEntity>
-		where TIdentity : IComparable<TIdentity>
+		where TIdentity : notnull, IComparable<TIdentity>
 		where TEntity : class, IIdentity<TIdentity>
 	{
 		/// <summary>
@@ -41,10 +41,10 @@ namespace Mtd.Core.Repositories
 		/// <remarks>
 		/// Returns null if no item with the matching identity is found.
 		/// </remarks>
-		TEntity GetByIdentityOrDefault(TIdentity identity);
+		TEntity? GetByIdentityOrDefault(TIdentity identity);
 
 		Task<TEntity> GetByIdentityAsync(TIdentity identity);
 
-		Task<TEntity> GetByIdentityOrDefaultAsync(TIdentity identity);
+		Task<TEntity?> GetByIdentityOrDefaultAsync(TIdentity identity);
 	}
 }
