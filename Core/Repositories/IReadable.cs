@@ -98,6 +98,7 @@ namespace Mtd.Core.Repositories
 		/// </returns>
 		T? SingleOrDefault(Expression<Func<T, bool>> predicate);
 
+
 		/// <summary>
 		/// Filters the repository based on a predicate.
 		/// </summary>
@@ -108,6 +109,5 @@ namespace Mtd.Core.Repositories
 		/// An IEnumerable&lt;T&gt; that contains all elements from the repository that satisfy the condition.
 		/// </returns>
 		T_Collection Where(Expression<Func<T, bool>> predicate);
-
 	}
 }
