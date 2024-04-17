@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Mtd.Core.Entities
 {
 	public abstract class GuidEntity : Entity, IIdentity<string>
@@ -5,6 +7,7 @@ namespace Mtd.Core.Entities
 		private const string GUID_FORMAT = "N";
 		public required string Id { get; set; }
 
+		[SetsRequiredMembers()]
 		protected GuidEntity()
 		{
 			Id = Guid.NewGuid().ToString(GUID_FORMAT);
