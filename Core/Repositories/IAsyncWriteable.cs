@@ -40,6 +40,6 @@ namespace Mtd.Core.Repositories
 		/// <returns>
 		/// The number of changes committed.
 		/// </returns>
-		Task<int> CommitChangesAsync(CancellationToken token);
+		Task<int> CommitChangesAsync(CancellationToken cancellationToken);
 	}
 }
