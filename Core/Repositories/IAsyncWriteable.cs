@@ -6,7 +6,7 @@ namespace Mtd.Core.Repositories
 	/// <typeparam name="T">
 	/// The type of entity the repository holds.
 	/// </typeparam>
-	public interface IWriteable<T, T_Collection>
+	public interface IAsyncWriteable<T, T_Collection>
 		where T : class
 		where T_Collection : IEnumerable<T>
 	{
@@ -16,7 +16,7 @@ namespace Mtd.Core.Repositories
 		/// <param name="entity">
 		/// The entity to add.
 		/// </param>
-		T Add(T entity);
+		Task<T> AddAsync(T entity, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Add a collection of entities to a repository.
@@ -24,7 +24,7 @@ namespace Mtd.Core.Repositories
 		/// <param name="entities">
 		/// The entities to add.
 		/// </param>
-		T_Collection AddRange(IEnumerable<T> entities);
+		Task<T_Collection> AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Delete an entity from a repository.
@@ -32,7 +32,7 @@ namespace Mtd.Core.Repositories
 		/// <param name="entity">
 		/// The entity to delete.
 		/// </param>
-		void Delete(T entity);
+		Task DeleteAsync(T entity, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Write all changes to persistent storage.
@@ -40,6 +40,6 @@ namespace Mtd.Core.Repositories
 		/// <returns>
 		/// The number of changes committed.
 		/// </returns>
-		int CommitChanges();
+		Task<int> CommitChangesAsync(CancellationToken cancellationToken);
 	}
 }

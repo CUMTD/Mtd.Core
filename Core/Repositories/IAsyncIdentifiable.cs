@@ -11,7 +11,7 @@ namespace Mtd.Core.Repositories
 	/// <typeparam name="TEntity">
 	/// The type of the entity.
 	/// </typeparam>
-	public interface IIdentifiable<in TIdentity, TEntity>
+	public interface IAsyncIdentifiable<in TIdentity, TEntity>
 		where TIdentity : notnull, IComparable<TIdentity>
 		where TEntity : class, IIdentity<TIdentity>
 	{
@@ -27,7 +27,7 @@ namespace Mtd.Core.Repositories
 		/// <remarks>
 		/// Throws an error if no matching identity is found.
 		/// </remarks>
-		TEntity GetByIdentity(TIdentity identity);
+		Task<TEntity> GetByIdentityAsync(TIdentity identity, CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Get an item that matches the provided identity.
@@ -41,6 +41,6 @@ namespace Mtd.Core.Repositories
 		/// <remarks>
 		/// Returns null if no item with the matching identity is found.
 		/// </remarks>
-		TEntity? GetByIdentityOrDefault(TIdentity identity);
+		Task<TEntity?> GetByIdentityOrDefaultAsync(TIdentity identity, CancellationToken cancellationToken);
 	}
 }
