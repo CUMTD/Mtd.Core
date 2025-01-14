@@ -1,3 +1,5 @@
+using Mtd.Core.Entities;
+
 namespace Mtd.Core.Repositories
 {
 	/// <summary>
@@ -41,5 +43,12 @@ namespace Mtd.Core.Repositories
 		/// The number of changes committed.
 		/// </returns>
 		Task<int> CommitChangesAsync(CancellationToken cancellationToken);
+
+		/// <summary>
+		/// Creates a new transaction asynchronously.
+		/// </summary>
+		/// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+		/// <returns>A task that represents the asynchronous operation, containing the created transaction.</returns>
+		Task<ITransaction> CreateTransactionAsync(CancellationToken cancellationToken);
 	}
 }
