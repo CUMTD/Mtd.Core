@@ -1,10 +1,15 @@
+using Mtd.Core.Entities;
+
 namespace Mtd.Core.Repositories
 {
 	/// <summary>
-	/// A repository for a writeable entity.
+	/// The type of entity the repository holds.
 	/// </summary>
 	/// <typeparam name="T">
 	/// The type of entity the repository holds.
+	/// </typeparam>
+	/// <typeparam name="T_Collection">
+	/// The type of collection that holds the entities.
 	/// </typeparam>
 	public interface IWriteable<T, T_Collection>
 		where T : class
@@ -41,5 +46,13 @@ namespace Mtd.Core.Repositories
 		/// The number of changes committed.
 		/// </returns>
 		int CommitChanges();
+
+		/// <summary>
+		/// Create a new transaction.
+		/// </summary>
+		/// <returns>
+		/// A new transaction instance.
+		/// </returns>
+		ITransaction CreateTransaction();
 	}
 }
