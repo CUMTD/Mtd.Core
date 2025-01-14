@@ -6,6 +6,8 @@
 	/// <typeparam name="T">The type of the entity.</typeparam>
 	/// <typeparam name="T_Collection">The type of the collection of entities.</typeparam>
 	public interface IAsyncBulkWriteable<T, T_Collection>
+		where T : class
+		where T_Collection : IEnumerable<T>
 	{
 		/// <summary>
 		/// Asynchronously inserts a collection of entities.
