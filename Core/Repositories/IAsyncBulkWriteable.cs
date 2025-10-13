@@ -18,6 +18,14 @@
 		Task BulkInsertAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
 
 		/// <summary>
+		/// Asynchronously inserts a collection of entities, including relationship graphs.
+		/// </summary>
+		/// <param name="entities">The entities to insert.</param>
+		/// <param name="cancellationToken">A token to cancel the operation.</param>
+		/// <returns>A task representing the asynchronous operation.</returns>
+		Task BulkInsertWithGraphAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
+
+		/// <summary>
 		/// Asynchronously inserts or updates a collection of entities.
 		/// </summary>
 		/// <param name="entities">The entities to insert or update.</param>
