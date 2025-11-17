@@ -1,6 +1,5 @@
-﻿namespace Mtd.Core.Entities
+namespace Mtd.Core.Entities;
+
+public abstract class Entity : IEntity
 {
-	public abstract class Entity : IEntity
-	{
-	}
 }
