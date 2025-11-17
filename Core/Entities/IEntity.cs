@@ -1,6 +1,5 @@
-﻿namespace Mtd.Core.Entities
+namespace Mtd.Core.Entities;
+
+public interface IEntity
 {
-	public interface IEntity
-	{
-	}
 }
