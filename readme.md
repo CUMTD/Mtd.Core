@@ -92,21 +92,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    env:
-      MtdGithubUserName: CUMTD
-      MtdGithubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
       - name: Restore dependencies
-        run: dotnet restore Mtd.Test.sln
+        run: dotnet restore Mtd.Core.slnx
       - name: Build
-        run: dotnet build --no-restore Mtd.Test.sln
+        run: dotnet build --no-restore Mtd.Core.slnx
       - name: Test
         run: dotnet test --no-build --verbosity normal
 ```

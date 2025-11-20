@@ -1,0 +1,20 @@
+﻿<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/dependabot.yml" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/build-test.yml" />
+	<File Path=".github/workflows/codeql.yml" />
+    <File Path=".github/workflows/publish-release.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Packages.props" />
+    <File Path="icon.png" />
+    <File Path="nuget.config" />
+    <File Path="readme.md" />
+  </Folder>
+  <Project Path="Core/Mtd.Core.csproj" />
+</Solution>
